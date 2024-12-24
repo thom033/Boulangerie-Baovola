@@ -23,6 +23,13 @@
 
     <ul class="menu-inner py-1">
         <!-- Recipe -->
+        <li class="menu-item <% if (activeMenuItem.equals("produit")) { %>active<% } %>">
+            <a href="recipe" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-book"></i>
+                <div data-i18n="Produit">Produit</div>
+            </a>
+        </li>
+        <%-- <!-- Recipe -->
         <li class="menu-item <% if (activeMenuItem.equals("recipe")) { %>active<% } %>">
             <a href="recipe" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-book"></i>
@@ -60,6 +67,6 @@
                 <i class="menu-icon tf-icons bx bxs-star-half"></i>
                 <div data-i18n="Reviews">Retours</div>
             </a>
-        </li>
+        </li> --%>
     </ul>
 </aside>

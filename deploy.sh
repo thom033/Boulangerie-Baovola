@@ -40,7 +40,7 @@ export PATH=$JAVA_HOME/bin:$PATH
 # Compilation des fichiers .java dans [src]
 # Note : Assurez-vous que javac est installé et configuré dans PATH
 find "$src" -name "*.java" > sources.txt
-$JAVA_HOME/bin/javac -parameters -d "$temp/WEB-INF/classes" -cp "$lib/*" @sources.txt
+javac -parameters -d "$temp/WEB-INF/classes" -cp "$lib/*" @sources.txt
 rm sources.txt  # Supprimer la liste des fichiers après compilation
 
 # Créer un fichier .war nommé [war_name].war à partir de [temp]

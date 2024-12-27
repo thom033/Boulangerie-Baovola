@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gotta taste login</title>
+    <title>Mofoko login</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico"/>
@@ -48,13 +48,13 @@
                     <div class="app-brand justify-content-center">
                         <a href="recipe" class="app-brand-link gap-2 py-1">
                     <span class="app-brand-logo demo">
-                      <img width="25" src="assets/img/favicon/book.png" alt="Gotta taste logo">
+                      <img width="25" src="assets/img/favicon/mofo.png" alt="Gotta taste logo">
                     </span>
-                            <span class="app-brand-text demo text-body fw-bolder">Gotta taste</span>
+                            <span class="app-brand-text demo text-body fw-bolder">Mofoko</span>
                         </a>
                     </div>
                     <!-- /Logo -->
-                    <h4 class="mb-2">Bienvenu dans Gotta taste ! 👋</h4>
+                    <h4 class="mb-2">Bienvenu chez Mofoko ! </h4>
                     <p class="mb-4">Veuillez vous connecter à votre compte</p>
 
                     <form id="formAuthentication" class="mb-3" action="login" method="POST">

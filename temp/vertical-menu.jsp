@@ -8,9 +8,9 @@
     <div class="app-brand demo">
         <a href="recipe" class="app-brand-link">
                       <span class="app-brand-logo demo">
-                        <img width="25" src="assets/img/favicon/book.png" alt="Gotta taste logo">
+                        <img width="25" src="assets/img/favicon/mofo.png" alt="Gotta taste logo">
                       </span>
-            <span class="app-brand-text demo menu-text fw-bolder ms-2">Gotta taste</span>
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">Mofoko</span>
         </a>
 
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">

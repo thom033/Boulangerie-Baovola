@@ -37,7 +37,7 @@ public class User {
         ArrayList<User> users = new ArrayList<>();
 
         try (Connection connection = DBConnection.getPostgesConnection(); PreparedStatement statement = connection.prepareStatement(
-                "SELECT * FROM gotta_taste_user"
+                "SELECT * FROM boulangerie_user"
         ); ResultSet resultSet = statement.executeQuery()) {
 
             int id;
@@ -68,7 +68,7 @@ public class User {
             connection = DBConnection.getPostgesConnection();
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(
-                "INSERT INTO gotta_taste_user(firstname, lastname, email, user_password)"
+                "INSERT INTO boulangerie_user(firstname, lastname, email, user_password)"
                 + " VALUES (?, ?, ?, ?)"
             );
             statement.setString(1, firstname);
@@ -94,7 +94,7 @@ public class User {
         try {
             connection = DBConnection.getPostgesConnection();
             statement = connection.prepareStatement(
-                "SELECT * FROM gotta_taste_user"
+                "SELECT * FROM boulangerie_user"
                 + " WHERE email = ? AND user_password = ?"
             );
             statement.setString(1, email);

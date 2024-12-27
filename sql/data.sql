@@ -3,7 +3,7 @@ INSERT INTO category (category_name) VALUES
     ('Appetizers'), ('Main Courses'), ('Desserts');
 
 -- Insert into the 'gotta_taste_user' table
-INSERT INTO gotta_taste_user (firstname, lastname, email, user_password) VALUES  
+INSERT INTO boulangerie_user (firstname, lastname, email, user_password) VALUES  
     ('John', 'Doe', 'john.doe@example.com', 'password123'),
     ('Jane', 'Smith', 'jane.smith@example.com', 'password456'),
     ('Tiarintsoa', 'Mbolatsiory', 'tiarintsoa@gmail.com', '12345678');

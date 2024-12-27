@@ -8,7 +8,7 @@ public class DBConnection {
 
     private static final String postgres_hote = "localhost";
     private static final String postgres_port = "5432"; // Le port par défaut de PostgreSQL est 5432
-    private static final String postgres_bdd = "gotta_taste";
+    private static final String postgres_bdd = "boulangerie";
     private static final String postgres_utilisateur = "postgres";
     private static final String postgres_mdp = "postgres";
     // private static String postgres_encoding = "WIN1256";

@@ -1,3 +1,3 @@
 <%
-    response.sendRedirect("reciep");
+    response.sendRedirect("recipe");
 %>

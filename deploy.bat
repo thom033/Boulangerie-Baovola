@@ -7,8 +7,8 @@ set "temp=%work_dir%\temp"
 set "web=%work_dir%\web"
 set "web_xml=%work_dir%\web.xml"
 set "lib=%work_dir%\lib"
-set "web_apps=C:\Program Files\Apache Software Foundation\Tomcat 10.1\webapps"
-set "war_name=gotta-taste"
+set "web_apps=C:\apache-tomcat-10.1.34\webapps"
+set "war_name=boulangerie-baovola"
 set "src=%work_dir%\src"
 
 :: Effacer le dossier [temp]

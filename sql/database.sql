@@ -1,8 +1,8 @@
-CREATE DATABASE gotta_taste;
+CREATE DATABASE boulangerie;
 
-\c gotta_taste;
+\c boulangerie;
 
-CREATE TABLE gotta_taste_user (
+CREATE TABLE boulangerie_user (
     id_user SERIAL PRIMARY KEY,
     firstname VARCHAR(100) NOT NULL,
     lastname VARCHAR(100) NOT NULL,
@@ -57,6 +57,6 @@ CREATE TABLE review (
     rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
     comment TEXT,
     review_date DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_user) REFERENCES gotta_taste_user(id_user),
+    FOREIGN KEY (id_user) REFERENCES boulangerie_user(id_user),
     FOREIGN KEY (id_recipe) REFERENCES recipe(id_recipe)
 );

@@ -233,6 +233,7 @@ public class Recipe {
                 cookTime = resultSet.getTime("cook_time").toLocalTime();
                 createdBy = resultSet.getString("created_by");
                 createdDate = resultSet.getDate("created_date").toLocalDate();
+                price = calculatePrice();
             }
         } finally {
             if (resultSet != null) {
@@ -339,6 +340,49 @@ public class Recipe {
         }
     }
 
+    private int price;
+
+    public int calculatePrice() throws Exception {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        int price = 0;
+        try {
+            connection = DBConnection.getPostgesConnection();
+            statement = connection.prepareStatement(
+                "SELECT ri.id_recipe, SUM(ri.quantity * i.price) AS total_price"
+                + " FROM recipe_ingredient ri"
+                + " JOIN ingredient i ON ri.id_ingredient = i.id_ingredient"  
+                + " WHERE ri.id_recipe = ?"
+                + " GROUP BY ri.id_recipe"
+            );
+            statement.setInt(1, getId());
+            resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                price = resultSet.getInt("total_price");
+            }
+        } finally {
+            if (resultSet != null) {
+                resultSet.close();
+            }
+            if (statement != null) {
+                statement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }  
+        }
+        return price;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+    
     public int getId() {
         return id;
     }
@@ -421,4 +465,14 @@ public class Recipe {
                 + ", cookTime=" + cookTime + ", createdBy=" + createdBy + ", createdDate=" + createdDate + "]";
     }
 
+    //void main por tester calculatePrice
+    public static void main(String[] args) {
+        Recipe recipe = new Recipe(1);
+        try {
+            recipe.calculatePrice();
+            System.out.println(recipe.getPrice());
+        } catch (Exception e) {
+            e.printStackTrace();
+    }
+    }
 }

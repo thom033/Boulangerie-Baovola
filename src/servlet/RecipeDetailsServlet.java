@@ -24,6 +24,7 @@ public class RecipeDetailsServlet extends HttpServlet {
             ArrayList<Step> steps = Step.search(idRecipe, 0, 0, "");
             ArrayList<RecipeIngredient> recipeIngredients = RecipeIngredient.search(idRecipe);
 
+            
             req.setAttribute("recipe", recipe);
             req.setAttribute("steps", steps);
             req.setAttribute("recipeIngredients", recipeIngredients);

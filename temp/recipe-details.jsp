@@ -47,9 +47,13 @@
                     </h4>
 
                     <div class="card mb-3">
-                        <h1 class="card-header pb-3"><%= recipe.getTitle() %> <span
-                                class="fs-0-5em text-muted fw-normal"><%= recipe.getCreatedBy() %></span></h1>
+                        <h1 class="card-header pb-3"><%= recipe.getTitle() %> 
+                            <span class="fs-0-5em text-muted fw-normal"><%= recipe.getCreatedBy() %></span>
+                        </h1>
+                        <h1 class="card-header pb-3">$<%= recipe.getPrice() %></h1>
+                        
                         <div class="card-body">
+
                             <p class="card-subtitle text-muted"><%= recipe.getHumanFormattedCreatedDate() %>
                             </p>
                             <div class="divider text-end mt-0 mb-2">

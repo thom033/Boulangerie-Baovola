@@ -63,13 +63,10 @@ public class RecipeServlet extends HttpServlet {
                 maxCreationDate = LocalDate.parse(maxCreationDateStr);
             }
 
-            ArrayList<Recipe> recipes = new ArrayList<>();
+            ArrayList<Recipe> recipes = Recipe.search(title, description, idCategory, minCookTime, maxCookTime, creator, minCreationDate, maxCreationDate);
 
             if (idIngredient != 0) {
-                recipes = Recipe.getRecipesByIngredientId(idIngredient);
-            }
-            else{
-                recipes = Recipe.search(title, description, idCategory, minCookTime, maxCookTime, creator, minCreationDate, maxCreationDate);
+                recipes = Recipe.getRecipesByIngredientId(idIngredient, recipes);
             }
 
             

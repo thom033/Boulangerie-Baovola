@@ -8,7 +8,7 @@ set "web=%work_dir%\web"
 set "web_xml=%work_dir%\web.xml"
 set "lib=%work_dir%\lib"
 ::"web_apps=C:\apache-tomcat-10.1.34\webapps"
-set "web_apps=C:\xampp\tomcat\webapps"
+set "web_apps=C:\apache-tomcat-10.1.34\webapps"
 set "war_name=boulangerie-baovola"
 set "src=%work_dir%\src"
 

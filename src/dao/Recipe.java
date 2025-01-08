@@ -416,6 +416,20 @@ public class Recipe {
     }
 
 
+    public static ArrayList<Recipe> getRecipesByIngredientId(int ingredientId, ArrayList<Recipe> recipes) throws Exception{
+        ArrayList<Recipe> recipesByIngredient = new ArrayList<>();
+        for (Recipe recipe : recipes) {
+            ArrayList<RecipeIngredient> recipeIngredients = RecipeIngredient.search(recipe.getId());
+            for (RecipeIngredient recipeIngredient : recipeIngredients) {
+                if (recipeIngredient.getIdIngredient() == ingredientId) {
+                    recipesByIngredient.add(recipe);
+                    break;
+                }
+            }
+        }
+        return recipesByIngredient;
+    }
+
     public int getPrice() {
         return price;
     }

@@ -68,6 +68,18 @@
                                                    aria-label="Description" aria-describedby="search-description">
                                         </div>
                                         <div class="mb-3">
+                                            <label class="form-label" for="search-category">Ingredients</label>
+                                            <select name="searchIdIngredient" class="form-select" id="search-ingredient"
+                                                    aria-label="Catégorie de recherche">
+                                                <option selected value="0">Toutes les ingredients</option>
+                                                <% for (Ingredient category : (ArrayList<Ingredient>) request.getAttribute("ingredients")) { %>
+                                                <option value="<%= category.getId() %>">
+                                                    <%= category.getName() %>
+                                                </option>
+                                                <% } %>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
                                             <label class="form-label" for="search-category">Catégorie</label>
                                             <select name="searchIdCategory" class="form-select" id="search-category"
                                                     aria-label="Catégorie de recherche">
@@ -137,7 +149,7 @@
 
                     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Gotta taste /</span> Recettes</h4>
 
-                    <form method="GET" action="recipe">
+                    <%-- <form method="GET" action="recipe">
                         <div class="mb-3">
                             <label class="form-label" for="search-category">Ingredients</label>
                             <select name="searchIdIngredient" class="form-select" id="search-ingredient"
@@ -153,7 +165,7 @@
                         <div class="modal-footer p-0">
                             <button type="submit" class="btn btn-primary">Rechercher</button>
                         </div>
-                    </form>
+                    </form> --%>
                     
                     <!-- Basic Bootstrap Table -->
                     <div class="card">

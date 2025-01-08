@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
@@ -374,6 +375,46 @@ public class Recipe {
         }
         return price;
     }
+
+    public static ArrayList<Recipe> getRecipesByIngredientId(int ingredientId) throws Exception {
+        ArrayList<Recipe> recipes = new ArrayList<>();
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = DBConnection.getPostgesConnection();
+            statement = connection.prepareStatement(
+                "SELECT * FROM specific_ingredients " +
+                "WHERE ingredient_id = ?"
+            );
+            statement.setInt(1, ingredientId);
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id_recipe");
+                String title = resultSet.getString("title");
+                String description = resultSet.getString("recipe_description");
+                // int cookTime = resultSet.getInt("cook_time");
+                LocalDateTime dateTime = resultSet.getTimestamp("created_date").toLocalDateTime();
+                LocalTime cookTime = dateTime.toLocalTime();
+                int idCategory = resultSet.getInt("id_category");
+                String createdBy = resultSet.getString("created_by");
+                // String createdDatestr = resultSet.getString("created_date");
+
+                LocalDate createdDate = LocalDate.parse(resultSet.getString("created_date"));
+
+                recipes.add(new Recipe(id, title, description,idCategory, cookTime, createdBy, createdDate));
+            }
+        } finally {
+            if (resultSet != null) resultSet.close();
+            if (statement != null) statement.close();
+            if (connection != null) connection.close();
+        }
+
+        return recipes;
+    }
+
 
     public int getPrice() {
         return price;

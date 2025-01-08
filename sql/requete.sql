@@ -1,4 +1,6 @@
 -- Total price of a recipe
+-- Total price of a recipe
+CREATE VIEW recipe_total_price AS
 SELECT 
     ri.id_recipe,
     SUM(ri.quantity * i.price) AS total_price
@@ -37,3 +39,26 @@ JOIN
     recipe r ON sr.id_recipe = r.id_recipe
 GROUP BY 
     sr.id_recipe, r.title;
+
+--Requette ingredients specifique
+CREATE OR REPLACE VIEW specific_ingredients AS
+SELECT
+    r.id_recipe,
+    r.title,
+    r.recipe_description,
+    r.cook_time,
+    r.created_by,
+    r.created_date,
+    r.id_category,
+    i.id_ingredient AS ingredient_id
+FROM 
+    recipe r
+JOIN 
+    recipe_ingredient ri ON r.id_recipe = ri.id_recipe
+JOIN 
+    ingredient i ON ri.id_ingredient = i.id_ingredient;
+
+
+SELECT * FROM specific_ingredients 
+WHERE 
+    ingredient_id = 1;

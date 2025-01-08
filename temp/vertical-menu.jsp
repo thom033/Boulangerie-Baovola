@@ -46,7 +46,7 @@
             </a>
         </li>
 
-        <!-- Step -->
+        <%-- <!-- Step -->
         <li class="menu-item">
             <a href="step" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-book-open"></i>
@@ -60,7 +60,7 @@
                 <i class="menu-icon tf-icons bx bxs-star-half"></i>
                 <div data-i18n="Reviews">Retours</div>
             </a>
-        </li>
+        </li> --%>
 
         <!-- Stock -->
         <li class="menu-item">

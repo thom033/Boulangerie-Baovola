@@ -11,6 +11,8 @@ public class Ingredient {
     private String name = "";
     private String unit = "";
     private int price = 1;
+    private boolean estBase;
+
 
     public Ingredient() {}
     
@@ -48,11 +50,13 @@ public class Ingredient {
             String name;
             String unit;
             int price;
+            boolean estBase;
             while (resultSet.next()) {
                 id = resultSet.getInt("id_ingredient");
                 name = resultSet.getString("ingredient_name");
                 unit = resultSet.getString("unit");
                 price = resultSet.getInt("price");
+                estBase = resultSet.getBoolean("est_base");
 
                 ingredients.add(
                     new Ingredient(id, name, unit, price)
@@ -250,6 +254,50 @@ public class Ingredient {
         }
     }
 
+    public static ArrayList<Ingredient> getAllNotBase(){
+        ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = DBConnection.getPostgesConnection();
+            statement = connection.prepareStatement(
+                "SELECT * FROM ingredient WHERE est_base = false"
+            );
+            resultSet = statement.executeQuery();
+
+            int id;
+            String name;
+            String unit;
+            int price;
+            boolean estBase;
+            while (resultSet.next()) {
+                id = resultSet.getInt("id_ingredient");
+                name = resultSet.getString("ingredient_name");
+                unit = resultSet.getString("unit");
+                price = resultSet.getInt("price");
+                estBase = resultSet.getBoolean("est_base");
+
+                ingredients.add(
+                    new Ingredient(id, name, unit, price)
+                );
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+                if (connection != null) connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return ingredients;
+    }
+
     public int getId() {
         return id;
     }
@@ -287,4 +335,14 @@ public class Ingredient {
         return "Ingredient [id=" + id + ", name=" + name + ", unit=" + unit + ", price=" + price + "]";
     }
   
+    public static void main(String[] args) {
+        try {
+            ArrayList<Ingredient> ingredients = Ingredient.getAllNotBase();
+            for (Ingredient ingredient : ingredients) {
+                System.out.println(ingredient);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

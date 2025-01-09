@@ -23,6 +23,15 @@ public class Recipe {
     private String createdBy = "";
     private LocalDate createdDate = LocalDate.now();
 
+    private String status;
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
     private static final DateTimeFormatter humanTimeFormatter = new DateTimeFormatterBuilder()
             .appendPattern("H")
@@ -428,6 +437,55 @@ public class Recipe {
             }
         }
         return recipesByIngredient;
+    }
+
+    // public static ArrayList<Recipe> getRecipesNature(String nature){
+    //     ArrayList<Recipe> val = new ArrayList<>();
+
+    //     ArrayList<Recipe> all = Recipe.all();
+    //     for (Recipe recipe : all) {
+    //         ArrayList<RecipeIngredient> recipeIngredients = RecipeIngredient.search(recipe.getId());
+    //         if (nature.equals("nature")) {
+    //             for (RecipeIngredient recipeIngredient : recipeIngredients) {
+    //                 if (recipeIngredient.getEstBase() == true) {
+    //                     recipesByIngredient.add(recipe);
+    //                     break;
+    //                 }
+    //             }
+    //         }
+    //     }
+
+        
+
+        
+        
+    // }
+
+    public ArrayList<Recipe> getRecipeNatureStatus() throws Exception {
+        ArrayList<Recipe> recipes = new ArrayList<>();
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = DBConnection.getPostgesConnection();
+            statement = connection.prepareStatement("SELECT * FROM recipe_nature_status");
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                Recipe recipe = new Recipe();
+                recipe.setId(resultSet.getInt("id_recipe"));
+                recipe.setTitle(resultSet.getString("title"));
+                recipe.setStatus(resultSet.getString("recipe_nature_status"));
+                recipes.add(recipe);
+            }
+        } finally {
+            if (resultSet != null) resultSet.close();
+            if (statement != null) statement.close();
+            if (connection != null) connection.close();
+        }
+
+        return recipes;
     }
 
     public int getPrice() {

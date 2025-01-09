@@ -12,6 +12,10 @@ public class RecipeIngredient {
     private String ingredientName;
     private String ingredientUnit;
     private double quantity;
+    private boolean estBase;
+
+
+
 
     public RecipeIngredient() {}
 
@@ -24,11 +28,18 @@ public class RecipeIngredient {
         this.idIngredient = idIngredient;
     }
 
-    public RecipeIngredient(int idRecipe, int idIngredient, double quantity) {
-        this.idRecipe = idRecipe;
-        this.idIngredient = idIngredient;
-        this.quantity = quantity;
-    }
+    // public RecipeIngredient(int idRecipe, int idIngredient, double quantity) {
+    //     this.idRecipe = idRecipe;
+    //     this.idIngredient = idIngredient;
+    //     this.quantity = quantity;
+    // }
+    public RecipeIngredient(int idRecipe, int idIngredient, double quantity, boolean estBase) {
+    this.idRecipe = idRecipe;
+    this.idIngredient = idIngredient;
+    this.quantity = quantity;
+    this.estBase = estBase;
+}
+
 
     public RecipeIngredient(int idRecipe, int idIngredient, String ingredientName, String ingredientUnit, double quantity) {
         this.idRecipe = idRecipe;
@@ -148,16 +159,17 @@ public class RecipeIngredient {
             connection = DBConnection.getPostgesConnection();
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(
-                    "INSERT INTO recipe_ingredient(id_recipe, id_ingredient, quantity)"
-                            + " VALUES (?, ?, ?)"
+                "INSERT INTO recipe_ingredient(id_recipe, id_ingredient, quantity, est_base)"
+                + " VALUES (?, ?, ?, ?)"
             );
             statement.setInt(1, idRecipe);
             statement.setInt(2, idIngredient);
             statement.setDouble(3, quantity);
+            statement.setBoolean(4, estBase);
             statement.executeUpdate();
             connection.commit();
         } catch (Exception e) {
-            if (connection != null)  connection.rollback();
+            if (connection != null) connection.rollback();
             throw e;
         } finally {
             if (statement != null) statement.close();
@@ -172,23 +184,26 @@ public class RecipeIngredient {
             connection = DBConnection.getPostgesConnection();
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(
-                    "UPDATE recipe_ingredient"
-                            + " SET quantity = ?"
-                            + " WHERE id_recipe = ? AND id_ingredient = ?"
+                "UPDATE recipe_ingredient"
+                + " SET quantity = ?, est_base = ?"
+                + " WHERE id_recipe = ? AND id_ingredient = ?"
             );
             statement.setDouble(1, quantity);
-            statement.setInt(2, idRecipe);
-            statement.setInt(3, idIngredient);
+            statement.setBoolean(2, estBase);
+            statement.setInt(3, idRecipe);
+            statement.setInt(4, idIngredient);
             statement.executeUpdate();
             connection.commit();
         } catch (Exception e) {
-            if (connection != null)  connection.rollback();
+            if (connection != null) connection.rollback();
             throw e;
         } finally {
             if (statement != null) statement.close();
             if (connection != null) connection.close();
         }
     }
+
+
 
     public void delete() throws Exception {
         Connection connection = null;
@@ -273,5 +288,12 @@ public class RecipeIngredient {
 
     public void setIngredientUnit(String ingredientUnit) {
         this.ingredientUnit = ingredientUnit;
+    }
+    public boolean isEstBase() {
+    return estBase;
+    }
+
+    public void setEstBase(boolean estBase) {
+        this.estBase = estBase;
     }
 }

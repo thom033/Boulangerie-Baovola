@@ -97,6 +97,15 @@
                                                    required
                                             />
                                         </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="estBase">Ingrédient de base</label>
+                                            <input type="checkbox" name="estBase" id="estBase" class="form-check-input"
+                                                <% if (recipeIngredient != null && recipeIngredient.isEstBase()) { %> checked <% } %> />
+                                            <label for="estBase" class="form-check-label">Marquer comme base</label>
+                                        </div>
+
+                                        
+                                        </div>
                                         <% if (request.getAttribute("action").equals("create")) { %>
                                         <button type="submit" class="btn btn-success">Ajouter</button>
                                         <% } else { %>

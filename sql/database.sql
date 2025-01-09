@@ -33,7 +33,6 @@ CREATE TABLE ingredient (
     price INT NOT NULL DEFAULT 0 
 );
 
-ALTER TABLE ingredient ADD COLUMN est_base BOOLEAN NOT NULL DEFAULT FALSE;
 
 CREATE TABLE recipe_ingredient (
     id_recipe INT,
@@ -43,6 +42,8 @@ CREATE TABLE recipe_ingredient (
     FOREIGN KEY (id_recipe) REFERENCES recipe(id_recipe),
     FOREIGN KEY (id_ingredient) REFERENCES ingredient(id_ingredient)
 );
+ALTER TABLE recipe_ingredient ADD COLUMN est_base BOOLEAN NOT NULL DEFAULT FALSE;
+
 
 CREATE TABLE step (
     id_step SERIAL PRIMARY KEY,

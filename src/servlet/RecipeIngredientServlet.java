@@ -1,9 +1,6 @@
 package servlet;
 
-import dao.Category;
-import dao.Recipe;
 import dao.RecipeIngredient;
-import dao.Step;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -11,9 +8,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
 
 public class RecipeIngredientServlet extends HttpServlet {
 
@@ -25,7 +19,7 @@ public class RecipeIngredientServlet extends HttpServlet {
 
             if (action != null && action.equals("delete")) {
                 int idIngredient = Integer.parseInt(req.getParameter("idIngredient"));
-                RecipeIngredient recipeIngredient = new RecipeIngredient(idRecipe, idIngredient);
+                RecipeIngredient recipeIngredient = new RecipeIngredient(idRecipe, idIngredient, 0.0, false);
                 recipeIngredient.delete();
             }
 
@@ -42,14 +36,17 @@ public class RecipeIngredientServlet extends HttpServlet {
         int idIngredient = Integer.parseInt(req.getParameter("idIngredient"));
         double quantity = Double.parseDouble(req.getParameter("quantity"));
 
-        RecipeIngredient recipeIngredient = new RecipeIngredient(idRecipe, idIngredient, quantity);
+        // Récupération correcte de la valeur de la checkbox
+        boolean estBase = req.getParameter("estBase") != null;
+
+        RecipeIngredient recipeIngredient = new RecipeIngredient(idRecipe, idIngredient, quantity, estBase);
 
         try {
             if ("update".equals(action)) {
                 recipeIngredient.update();
             } else if (recipeIngredient.find()) {
-                RequestDispatcher dispatcher = req.getRequestDispatcher("form-recipe-ingredient?idRecipe=" + idRecipe +"&idIngredient=" + idIngredient);
-                req.setAttribute("errorMessage", "La recette contient déjà cette ingrédient");
+                RequestDispatcher dispatcher = req.getRequestDispatcher("form-recipe-ingredient?idRecipe=" + idRecipe + "&idIngredient=" + idIngredient);
+                req.setAttribute("errorMessage", "La recette contient déjà cet ingrédient");
                 dispatcher.forward(req, resp);
                 return;
             } else {

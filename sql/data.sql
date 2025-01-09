@@ -5,8 +5,7 @@ INSERT INTO category (category_name) VALUES
 -- Insert into the 'gotta_taste_user' table
 INSERT INTO boulangerie_user (firstname, lastname, email, user_password) VALUES  
     ('John', 'Doe', 'john.doe@example.com', 'password123'),
-    ('Jane', 'Smith', 'jane.smith@example.com', 'password456'),
-    ('Tiarintsoa', 'Mbolatsiory', 'tiarintsoa@gmail.com', '12345678');
+    ('Jane', 'Smith', 'jane.smith@example.com', 'password456');
 
 -- Insert into the 'ingredient' table
 INSERT INTO ingredient (ingredient_name, unit, price) VALUES  

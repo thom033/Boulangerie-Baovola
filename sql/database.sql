@@ -45,6 +45,8 @@ CREATE TABLE recipe_ingredient (
 ALTER TABLE recipe_ingredient ADD COLUMN est_base BOOLEAN NOT NULL DEFAULT FALSE;
 
 
+ALTER TABLE recipe_ingredient ADD COLUMN est_base BOOLEAN NOT NULL DEFAULT FALSE;
+
 CREATE TABLE step (
     id_step SERIAL PRIMARY KEY,
     id_recipe INT NOT NULL,

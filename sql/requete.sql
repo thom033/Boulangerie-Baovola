@@ -62,3 +62,36 @@ JOIN
 SELECT * FROM specific_ingredients 
 WHERE 
     ingredient_id = 1;
+
+SELECT r.*
+FROM recipe r
+JOIN recipe_ingredient ri ON r.id_recipe = ri.id_recipe
+JOIN ingredient i ON ri.id_ingredient = i.id_ingredient
+WHERE i.est_base = true
+GROUP BY r.id_recipe
+HAVING COUNT(i.id_ingredient) = (
+    SELECT COUNT(*)
+    FROM recipe_ingredient ri2
+    WHERE ri2.id_recipe = r.id_recipe
+);
+
+SELECT r.id_recipe, r.title,
+    CASE 
+        WHEN COUNT(CASE WHEN i.est_base = false THEN 1 END) = 0 THEN 'Nature'
+        ELSE 'Not Nature'
+    END AS recipe_nature_status
+FROM recipe r
+JOIN recipe_ingredient ri ON r.id_recipe = ri.id_recipe
+JOIN ingredient i ON ri.id_ingredient = i.id_ingredient
+GROUP BY r.id_recipe, r.title;
+
+CREATE OR REPLACE VIEW recipe_nature_status AS
+SELECT r.*,
+    CASE 
+        WHEN COUNT(CASE WHEN ri.est_base = false THEN 1 END) = 0 THEN 'Nature'
+        ELSE 'Not Nature'
+    END AS recipe_nature_status
+FROM recipe r
+JOIN recipe_ingredient ri ON r.id_recipe = ri.id_recipe
+JOIN ingredient i ON ri.id_ingredient = i.id_ingredient
+GROUP BY r.id_recipe, r.title;

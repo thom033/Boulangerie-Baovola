@@ -2,11 +2,11 @@
 setlocal enabledelayedexpansion
 
 :: Déclaration des variables
-::set "work_dir=E:\S5\Boulangerie-Baovola"
-set "work_dir=C:\Users\Finoana\Documents\GitHub\boulangerie"
+set "work_dir=E:\S5\Boulangerie-Baovola"
+::set "work_dir=C:\Users\Finoana\Documents\GitHub\boulangerie"
 
-::set "tomcat_dir=C:\apache-tomcat-10.1.34\bin"
-set "tomcat_dir=C:\Program Files\Apache Software Foundation\Tomcat 10.1\bin"
+set "tomcat_dir=C:\apache-tomcat-10.1.34\bin"
+::set "tomcat_dir=C:\Program Files\Apache Software Foundation\Tomcat 10.1\bin"
 
 :: Lancer Tomcat
 cd /d "%tomcat_dir%"

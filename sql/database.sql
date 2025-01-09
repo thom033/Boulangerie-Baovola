@@ -33,6 +33,8 @@ CREATE TABLE ingredient (
     price INT NOT NULL DEFAULT 0 
 );
 
+ALTER TABLE ingredient ADD COLUMN est_base BOOLEAN NOT NULL DEFAULT FALSE;
+
 CREATE TABLE recipe_ingredient (
     id_recipe INT,
     id_ingredient INT,

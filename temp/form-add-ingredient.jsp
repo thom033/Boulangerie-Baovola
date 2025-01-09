@@ -1,8 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="util.SessionUtils" %>
+<%@ page import="util.SessionUtils, java.util.ArrayList, dao.TypeMvm" %>
 <% boolean connected = SessionUtils.isUserConnected(request); %>
 <%@include file="header.jsp"%>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,8 +50,17 @@
                                                 <input type="number" class="form-control" id="idIngredient" name="idIngredient" required>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="idType" class="form-label">ID Type</label>
-                                                <input type="number" class="form-control" id="idType" name="idType" required>
+                                                <label for="idType" class="form-label">Type</label>
+                                                <select class="form-control" id="idType" name="idType" required>
+                                                    <%
+                                                        ArrayList<TypeMvm> typeMvms = (ArrayList<TypeMvm>) request.getAttribute("typeMvms");
+                                                        for (TypeMvm typeMvm : typeMvms) {
+                                                    %>
+                                                        <option value="<%= typeMvm.getIdType() %>"><%= typeMvm.getTypeName() %></option>
+                                                    <%
+                                                        }
+                                                    %>
+                                                </select>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="qtt" class="form-label">Quantité</label>

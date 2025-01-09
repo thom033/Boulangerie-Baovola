@@ -1,6 +1,8 @@
 package servlet;
 
 import dao.StockIngredient;
+import dao.TypeMvm;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -8,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import util.SessionUtils;
 
@@ -19,7 +22,10 @@ public class AddIngredientServlet extends HttpServlet {
             return;
         }
 
+        ArrayList<TypeMvm> typeMvms = TypeMvm.all();
+
         req.setAttribute("pageTitle", "Ajouter un Ingrédient");
+        req.setAttribute("typeMvms", typeMvms);
         RequestDispatcher dispatcher = req.getRequestDispatcher("form-add-ingredient.jsp");
         dispatcher.forward(req, resp);
     }
@@ -36,7 +42,6 @@ public class AddIngredientServlet extends HttpServlet {
         int qtt = Integer.parseInt(req.getParameter("qtt"));
 
         StockIngredient stockIngredient = new StockIngredient();
-        // stockIngredient.setIdStock(idStock);
         stockIngredient.setIdIngredient(idIngredient);
         stockIngredient.setIdType(idType);
         stockIngredient.setQtt(qtt);

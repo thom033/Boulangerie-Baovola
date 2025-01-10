@@ -33,6 +33,8 @@ CREATE TABLE ingredient (
     price INT NOT NULL DEFAULT 0 
 );
 
+ALTER TABLE ingredient ADD COLUMN est_base BOOLEAN NOT NULL DEFAULT FALSE;
+
 CREATE TABLE recipe_ingredient (
     id_recipe INT,
     id_ingredient INT,
@@ -59,4 +61,31 @@ CREATE TABLE review (
     review_date DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_user) REFERENCES boulangerie_user(id_user),
     FOREIGN KEY (id_recipe) REFERENCES recipe(id_recipe)
+);
+
+-- Stock Features
+
+CREATE TABLE type_mvm (
+    id_type SERIAL PRIMARY KEY,
+    type_name VARCHAR(10) NOT NULL UNIQUE CHECK (type_name IN ('entree', 'sortie'))
+);
+
+INSERT INTO type_mvm (type_name) VALUES ('entree'), ('sortie');
+
+CREATE TABLE stock_ingredient (
+    id_stock SERIAL PRIMARY KEY,
+    id_ingredient INT NOT NULL,
+    id_type INT NOT NULL,
+    qtt INT NOT NULL,
+    FOREIGN KEY (id_ingredient) REFERENCES ingredient(id_ingredient),
+    FOREIGN KEY (id_type) REFERENCES type_mvm(id_type)
+);
+
+CREATE TABLE stock_recipe (
+    id_stock SERIAL PRIMARY KEY,
+    id_recipe INT NOT NULL,
+    id_type INT NOT NULL,
+    qtt INT NOT NULL,
+    FOREIGN KEY (id_recipe) REFERENCES recipe(id_recipe),
+    FOREIGN KEY (id_type) REFERENCES type_mvm(id_type)
 );

@@ -67,7 +67,7 @@
                         <div class="mb-3">
                             <label for="userEmail" class="form-label">Email</label>
                             <input
-                                    value="tiarintsoa@gmail.com"
+                                    value="john.doe@example.com"
                                     type="text"
                                     class="form-control"
                                     id="userEmail"
@@ -81,7 +81,7 @@
                             <label class="form-label" for="userPassword">Mot de passe</label>
                             <div class="input-group input-group-merge">
                                 <input
-                                        value="12345678"
+                                        value="password123"
                                         type="password"
                                         id="userPassword"
                                         class="form-control"

@@ -23,7 +23,7 @@
 
     <ul class="menu-inner py-1">
         <!-- Recipe -->
-        <li class="menu-item <% if (activeMenuItem.equals("recipe")) { %>active<% } %>">
+        <li class="menu-item">
             <a href="recipe" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-book"></i>
                 <div data-i18n="Recipies">Recettes</div>
@@ -31,7 +31,7 @@
         </li>
 
         <!-- Category -->
-        <li class="menu-item <% if (activeMenuItem.equals("category")) { %>active<% } %>">
+        <li class="menu-item">
             <a href="category" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-category"></i>
                 <div data-i18n="Categories">Catégories</div>
@@ -39,15 +39,15 @@
         </li>
 
         <!-- Ingredient -->
-        <li class="menu-item <% if (activeMenuItem.equals("ingredient")) { %>active<% } %>">
+        <li class="menu-item">
             <a href="ingredient" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-dish"></i>
                 <div data-i18n="Ingredients">Ingrédients</div>
             </a>
         </li>
 
-        <!-- Step -->
-        <li class="menu-item <% if (activeMenuItem.equals("step")) { %>active<% } %>">
+        <%-- <!-- Step -->
+        <li class="menu-item">
             <a href="step" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-book-open"></i>
                 <div data-i18n="Steps">Etapes</div>
@@ -55,10 +55,24 @@
         </li>
 
         <!-- Review -->
-        <li class="menu-item <% if (activeMenuItem.equals("review")) { %>active<% } %>">
+        <li class="menu-item">
             <a href="review" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-star-half"></i>
                 <div data-i18n="Reviews">Retours</div>
+            </a>
+        </li> --%>
+
+        <!-- Stock -->
+        <li class="menu-item">
+            <a href="form-add-ingredient.jsp" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-category"></i>
+                <div data-i18n="Reviews">Stock Ingredient Form</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="form-add-ingredient.jsp" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-category"></i>
+                <div data-i18n="Reviews">Stock Produit Form</div>
             </a>
         </li>
     </ul>

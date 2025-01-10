@@ -104,6 +104,11 @@
     <servlet-name>FormLoginServlet</servlet-name>
   </servlet>
 
+  <servlet>
+    <servlet-class>servlet.AddIngredientServlet</servlet-class>
+    <servlet-name>AddIngredient</servlet-name>
+  </servlet>
+
 
   <!-- Servlet mapping -->
   <servlet-mapping>
@@ -179,6 +184,11 @@
   <servlet-mapping>
     <servlet-name>FormLoginServlet</servlet-name>
     <url-pattern>/form-login</url-pattern>
+  </servlet-mapping>
+
+   <servlet-mapping>
+    <servlet-name>AddIngredient</servlet-name>
+    <url-pattern>/add-ingredient</url-pattern>
   </servlet-mapping>
  
 </web-app>

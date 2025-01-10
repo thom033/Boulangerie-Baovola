@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import dao.Category;
+import dao.Ingredient;
 import dao.Recipe;
 
 public class RecipeServlet extends HttpServlet {
@@ -21,6 +22,7 @@ public class RecipeServlet extends HttpServlet {
         try {
             String action = req.getParameter("action");
             
+            
             if (action != null && action.equals("delete")) {
                 int id = Integer.parseInt(req.getParameter("id"));
                 Recipe recipe = new Recipe(id);
@@ -28,7 +30,8 @@ public class RecipeServlet extends HttpServlet {
             }
 
             ArrayList<Category> categories = Category.all();
-            
+            ArrayList<Ingredient> ingredients = Ingredient.all();
+
             String title = req.getParameter("searchTitle") == null ? "" : req.getParameter("searchTitle");
             String description = req.getParameter("searchDescription") == null ? "" : req.getParameter("searchDescription");
             int idCategory = req.getParameter("searchIdCategory") == null ? 0 : Integer.parseInt(req.getParameter("searchIdCategory"));
@@ -41,6 +44,8 @@ public class RecipeServlet extends HttpServlet {
             String maxCreationDateStr = req.getParameter("searchMaxCreationDate");
             LocalDate minCreationDate = null;
             LocalDate maxCreationDate = null;
+
+            int idIngredient = req.getParameter("searchIdIngredient") == null ? 0 : Integer.parseInt(req.getParameter("searchIdIngredient"));
             
             if (minCookTimeStr != null && !minCookTimeStr.equals("")) {
                 minCookTime = LocalTime.parse(minCookTimeStr);
@@ -59,6 +64,13 @@ public class RecipeServlet extends HttpServlet {
             }
 
             ArrayList<Recipe> recipes = Recipe.search(title, description, idCategory, minCookTime, maxCookTime, creator, minCreationDate, maxCreationDate);
+
+            if (idIngredient != 0) {
+                recipes = Recipe.getRecipesByIngredientId(idIngredient, recipes);
+            }
+
+            
+            req.setAttribute("ingredients",ingredients);
             req.setAttribute("recipes", recipes);
             req.setAttribute("categories", categories);
             req.setAttribute("activeMenuItem", "recipe");

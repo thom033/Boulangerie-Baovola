@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="dao.Recipe, dao.Category, java.util.ArrayList, util.SessionUtils" %>
+<%@ page import="dao.Recipe, dao.Category, java.util.ArrayList, util.SessionUtils, dao.Ingredient" %>
 <% boolean connected = SessionUtils.isUserConnected(request); %>
 
 <%@include file="header.jsp"%>
@@ -66,6 +66,18 @@
                                             <input name="searchDescription" type="text" class="form-control"
                                                    id="search-description" placeholder="Description"
                                                    aria-label="Description" aria-describedby="search-description">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="search-category">Ingredients</label>
+                                            <select name="searchIdIngredient" class="form-select" id="search-ingredient"
+                                                    aria-label="Catégorie de recherche">
+                                                <option selected value="0">Toutes les ingredients</option>
+                                                <% for (Ingredient category : (ArrayList<Ingredient>) request.getAttribute("ingredients")) { %>
+                                                <option value="<%= category.getId() %>">
+                                                    <%= category.getName() %>
+                                                </option>
+                                                <% } %>
+                                            </select>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label" for="search-category">Catégorie</label>
@@ -137,6 +149,24 @@
 
                     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Gotta taste /</span> Recettes</h4>
 
+                    <%-- <form method="GET" action="recipe">
+                        <div class="mb-3">
+                            <label class="form-label" for="search-category">Ingredients</label>
+                            <select name="searchIdIngredient" class="form-select" id="search-ingredient"
+                                    aria-label="Catégorie de recherche">
+                                <option selected value="0">Toutes les ingredients</option>
+                                <% for (Ingredient category : (ArrayList<Ingredient>) request.getAttribute("ingredients")) { %>
+                                <option value="<%= category.getId() %>">
+                                    <%= category.getName() %>
+                                </option>
+                                <% } %>
+                            </select>
+                        </div>
+                        <div class="modal-footer p-0">
+                            <button type="submit" class="btn btn-primary">Rechercher</button>
+                        </div>
+                    </form> --%>
+                    
                     <!-- Basic Bootstrap Table -->
                     <div class="card">
                         <h5 class="card-header">Liste des recettes</h5>
@@ -152,9 +182,9 @@
                                     <th>Titre</th>
                                     <th>Description</th>
                                     <th>ID Catégorie</th>
-                                    <th>Temps de préparation</th>
+                                    <%-- <th>Temps de préparation</th>
                                     <th>Créée par</th>
-                                    <th>Date de création</th>
+                                    <th>Date de création</th> --%>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
@@ -169,12 +199,12 @@
                                     </td>
                                     <td><%= recipe.getIdCategory() %>
                                     </td>
-                                    <td><%= recipe.getHumanFormattedCookTime() %>
-                                    </td>
-                                    <td><%= recipe.getCreatedBy() %>
-                                    </td>
-                                    <td><%= recipe.getHumanFormattedCreatedDate() %>
-                                    </td>
+                                    <%-- <td><%= recipe.getHumanFormattedCookTime() %>
+                                    </td> --%>
+                                    <%-- <td><%= recipe.getCreatedBy() %>
+                                    </td> --%>
+                                    <%-- <td><%= recipe.getHumanFormattedCreatedDate() %>
+                                    </td> --%>
                                     <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow"

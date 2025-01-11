@@ -12,7 +12,6 @@ public class RecipeIngredient {
     private String ingredientName;
     private String ingredientUnit;
     private double quantity;
-    private boolean estBase;
 
     public RecipeIngredient() {}
 
@@ -60,7 +59,6 @@ public class RecipeIngredient {
                     resultSet.getInt("id_recipe"),
                     resultSet.getInt("id_ingredient"),
                     resultSet.getString("ingredient_name"),
-                    resultSet.getBoolean("est_base"),
                     resultSet.getString("unit"),
                     resultSet.getDouble("quantity")
                 ));
@@ -275,13 +273,5 @@ public class RecipeIngredient {
 
     public void setIngredientUnit(String ingredientUnit) {
         this.ingredientUnit = ingredientUnit;
-    }
-
-    public boolean getEstBase() {
-        return estBase;
-    }
-
-    public void setEstBase(boolean estBase) {
-        this.estBase = estBase;
     }
 }

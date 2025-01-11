@@ -109,6 +109,15 @@
     <servlet-name>AddIngredient</servlet-name>
   </servlet>
 
+  <servlet>
+    <servlet-class>servlet.SalesServlet</servlet-class>
+    <servlet-name>SalesServlet</servlet-name>
+  </servlet>
+
+  <servlet>
+    <servlet-class>servlet.FormSaleServlet</servlet-class>
+    <servlet-name>FormSaleServlet</servlet-name>
+  </servlet>
 
   <!-- Servlet mapping -->
   <servlet-mapping>
@@ -189,6 +198,16 @@
    <servlet-mapping>
     <servlet-name>AddIngredient</servlet-name>
     <url-pattern>/add-ingredient</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>SalesServlet</servlet-name>
+    <url-pattern>/sales</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>FormSaleServlet</servlet-name>
+    <url-pattern>/form-sale</url-pattern>
   </servlet-mapping>
  
 </web-app>

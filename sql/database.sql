@@ -91,3 +91,24 @@ CREATE TABLE stock_recipe (
     FOREIGN KEY (id_recipe) REFERENCES recipe(id_recipe),
     FOREIGN KEY (id_type) REFERENCES type_mvm(id_type)
 );
+
+---------------
+-- Sales Features
+
+CREATE TABLE sale (
+    id_sale SERIAL PRIMARY KEY,
+    id_user INT NOT NULL,
+    sale_date DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    total_amount DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (id_user) REFERENCES boulangerie_user(id_user)
+);
+
+CREATE TABLE sale_recipe (
+    id_sale INT,
+    id_recipe INT,
+    qtt INT NOT NULL,
+    PRIMARY KEY (id_sale, id_recipe),
+    FOREIGN KEY (id_sale) REFERENCES sale(id_sale),
+    FOREIGN KEY (id_recipe) REFERENCES recipe(id_recipe)
+);
+

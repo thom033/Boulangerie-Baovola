@@ -41,7 +41,12 @@ public class DBConnection {
         config.setUsername(postgres_utilisateur);
         config.setPassword(postgres_mdp);
         config.addDataSourceProperty("cachePrepStmts", properties.getProperty("cachePrepStmts"));
-        // Ajoutez d'autres propriétés de configuration si nécessaire
+        config.addDataSourceProperty("prepStmtCacheSize", properties.getProperty("prepStmtCacheSize"));
+        config.addDataSourceProperty("prepStmtCacheSqlLimit", properties.getProperty("prepStmtCacheSqlLimit"));
+        
+        // Configurez les propriétés du pool de connexions
+        config.setMaximumPoolSize(Integer.parseInt(properties.getProperty("maxConnections")));
+        config.setMinimumIdle(Integer.parseInt(properties.getProperty("minConnections")));
 
         ds = new HikariDataSource(config);
     }

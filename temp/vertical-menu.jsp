@@ -75,5 +75,11 @@
                 <div data-i18n="Reviews">Stock Produit Form</div>
             </a>
         </li>
+        <li class="menu-item">
+            <a href="sales" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-category"></i>
+                <div data-i18n="Reviews">Sales</div>
+            </a>
+        </li>
     </ul>
 </aside>

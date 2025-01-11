@@ -49,10 +49,7 @@
                                     <h5 class="mb-0">Recette</h5>
                                 </div>
                                 <div class="card-body">
-                                    <form
-                                            method="POST"
-                                            action="recipe"
-                                    >
+                                    <form method="POST" action="recipe">
                                         <input type="hidden" name="action"
                                                value="<%= request.getAttribute("action") %>">
                                         <input type="hidden" name="idRecipe" value="<%= recipe.getId() %>">

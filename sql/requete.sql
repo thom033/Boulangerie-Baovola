@@ -1,6 +1,6 @@
 -- Total price of a recipe
 -- Total price of a recipe
-CREATE VIEW recipe_total_price AS
+CREATE OR REPLACE VIEW recipe_total_price AS
 SELECT 
     ri.id_recipe,
     SUM(ri.quantity * i.price) AS total_price
@@ -14,7 +14,7 @@ GROUP BY
     ri.id_recipe;
 
 -- Current stock of ingredients
-CREATE VIEW current_ingredient_stock AS
+CREATE OR REPLACE VIEW current_ingredient_stock AS
 SELECT 
     si.id_ingredient,
     i.ingredient_name,
@@ -27,7 +27,7 @@ JOIN
 GROUP BY 
     si.id_ingredient, i.ingredient_name;
 
-CREATE VIEW current_recipe_stock AS
+CREATE OR REPLACE VIEW current_recipe_stock AS
 SELECT 
     sr.id_recipe,
     r.title AS recipe_name,
@@ -57,11 +57,6 @@ JOIN
     recipe_ingredient ri ON r.id_recipe = ri.id_recipe
 JOIN 
     ingredient i ON ri.id_ingredient = i.id_ingredient;
-
-
-SELECT * FROM specific_ingredients 
-WHERE 
-    ingredient_id = 1;
 
 SELECT r.*
 FROM recipe r
